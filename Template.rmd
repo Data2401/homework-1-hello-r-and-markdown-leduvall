@@ -19,11 +19,36 @@ library(datasauRus)
 
 The datasaurus_dozen file has 142 rows and 26 variables (columns). The variables include away_x, away_y, bullseye_x, bullseye_y, circle_x, circle_y, dino_x, dino_y, dots_x, dots_y, h_lines_x, h_lines_y, high_lines_x, high_lines_y, slant_down_x, slant_down_y, slant_up_x, slant_up_y, star_x, star_y, v_lines_x, v_lines_y, wide_lines_x, wide_lines_y, x_shape_x, x_shape_y. 
 
+datasaurus_dozen %>%
+count(dataset) %>%
+print(13)
+
+## # A tibble:
+## #  13 x 2
+##   dataset
+##   <chr>
+##  1 away
+##  2 bullseye
+##  3 circle 
+##  4 dino
+##  5 dots 
+##  6 h_lines
+##  7 high_lines
+##  8 slant_down
+##  9 slant_up
+## 10 star
+## 11 v_lines
+## 12 wide_lines
+## 13 x_shape
+## # ... with 1
+## #   more
+## #   variable 
+## #   n <int>
+
+
 ### Exercise 2
 
-(The answers for this Exercise are given for you below. But you should clean up some of the narrative so that it only includes what you want to turn in.)
-
-First let's plot the data in the dino dataset:
+Plot y vs. x for the dino dataset. 
 
 ```{r plot-dino, fig.height=3, fig.width=6}
 dino_data <- datasaurus_dozen %>%
@@ -32,12 +57,17 @@ ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
 
-And next calculate the correlation between `x` and `y` in this dataset:
+And next calculate the correlation between `x` and `y` in this dataset: -0.06447185
 
 ```{r cor-dino}
 dino_data %>%
   summarize(r = cor(x, y))
 ```
+## # A tibble: 1 x 1
+##       r
+##   <dbl>
+## 1 -0.0645
+
 
 ### Exercise 3
 
