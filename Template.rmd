@@ -93,21 +93,30 @@ star_data %>%
 ##         r
 ##     <dbl>
 ## 1 -0.0645
- 
+
+When comparing the correlation coefficient between the dino and star datasets, they are very close but star is slightly smaller.  
  
 ### Exercise 4
 
-(Add code and narrative as needed. Note that two R chunks are given but they are not labeled. Use the convention from above to name them appropriately.)
+Plot y vs. x for the circle dataset. 
 
-```{r}
-
-
-```
-
-```{r}
-
+```{r cor-circle}
+circle_data <- datasaurus_dozen %>%
+  filter(dataset == "circle")
+ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
+  geom_point()
 
 ```
+
+Calculate the coordination between x and y in this dataset: -0.06834336
+
+```{r cor-circle}
+circle_data %>%
+  summarize(r = cor(x, y))
+
+```
+When comparing the correlation coefficient between the dino and circle datasets, they are very close but circle is slightly smaller. 
+
 
 ### Exercise 5
 
