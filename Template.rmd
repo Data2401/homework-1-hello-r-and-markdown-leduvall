@@ -2,7 +2,12 @@
 title: "Hello R"
 author: "Lauren Duvall"
 date: "Data 2401"
-output: html_document
+output: 
+  html_document: 
+    fig_width: 8
+    fig_height: 6
+    highlight: zenburn
+    theme: paper
 ---
 
 MAKE SURE YOU READ AND FOLLOW **ALL** INSTRUCTIONS ON THE INSTRUCTION DOCUMENT. 
@@ -19,6 +24,7 @@ library(datasauRus)
 
 The datasaurus_dozen file has 142 rows and 26 variables (columns). The variables include away_x, away_y, bullseye_x, bullseye_y, circle_x, circle_y, dino_x, dino_y, dots_x, dots_y, h_lines_x, h_lines_y, high_lines_x, high_lines_y, slant_down_x, slant_down_y, slant_up_x, slant_up_y, star_x, star_y, v_lines_x, v_lines_y, wide_lines_x, wide_lines_y, x_shape_x, x_shape_y. 
 
+```{r}
 datasaurus_dozen %>%
 count(dataset) %>%
 print(13)
@@ -46,6 +52,10 @@ print(13)
 ## #   n <int>
 
 
+```
+
+
+
 ### Exercise 2
 
 Plot y vs. x for the dino dataset. 
@@ -62,12 +72,13 @@ And next calculate the correlation between `x` and `y` in this dataset: -0.06447
 ```{r cor-dino}
 dino_data %>%
   summarize(r = cor(x, y))
-```
-## # A tibble: 1 x 1
-##       r
-##   <dbl>
-## 1 -0.0645
 
+## # A tibble:  1 x 1 
+##         r
+##     <dbl>
+## 1 -.0645
+
+```
 
 ### Exercise 3
  
@@ -87,12 +98,13 @@ Calculate the coordination between x and y in this dataset: -0.0629611
 star_data %>%
   summarize(r = cor(x, y))
 
-```
-
 ## # A tibble: 1 x 1
 ##         r
 ##     <dbl>
 ## 1 -0.0645
+
+```
+
 
 When comparing the correlation coefficient between the dino and star datasets, they are very close but star is slightly smaller.  
  
@@ -100,7 +112,7 @@ When comparing the correlation coefficient between the dino and star datasets, t
 
 Plot y vs. x for the circle dataset. 
 
-```{r cor-circle}
+```{r plot-circle}
 circle_data <- datasaurus_dozen %>%
   filter(dataset == "circle")
 ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
@@ -114,14 +126,47 @@ Calculate the coordination between x and y in this dataset: -0.06834336
 circle_data %>%
   summarize(r = cor(x, y))
 
+
+## # A tibble: 1 x 1
+##         r
+##     <dbl>
+## 1 -0.0645
 ```
+
 When comparing the correlation coefficient between the dino and circle datasets, they are very close but circle is slightly smaller. 
 
 
 ### Exercise 5
 
-(Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, with the green +C.)
-```{r}
+Plot ALL datasets. 
 
+```{r plot-all}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+  geom_point()+
+  facet_wrap(~ dataset, ncol = 3) + # facet the dataset variable, in 3 cols
+  theme(legend.position = "none")
+
+```
+```{r cor-all}
+ datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(r = cor(x, y))
+
+## # A tibble: 13 x 2
+## dataset r
+##    <chr>        <dbl>
+##  1 away       -0.0641
+##  2 bullseye   -0.0686
+##  3 circle     -0.0683
+##  4 dino       -0.0645
+##  5 dots       -0.0603
+##  6 h_lines    -0.0917
+##  7 high_lines -0.0685
+##  8 slant_down -0.0690
+##  9 slant_up   -0.0686
+## 10 star       -0.0630
+## 11 v_lines    -0.0694
+## 12 wide_lines -0.0666
+## 13 x_shape    -0.0656
 ```
 
