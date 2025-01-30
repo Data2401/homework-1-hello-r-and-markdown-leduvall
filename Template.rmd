@@ -17,7 +17,7 @@ library(datasauRus)
 
 ### Exercise 1
 
-(Type your answer to Exercise 1 here. This exercise does not require any R code. **Remove notes like this in the final product that you turn in**)
+The datasaurus_dozen file has 142 rows and 26 variables (columns). The variables include away_x, away_y, bullseye_x, bullseye_y, circle_x, circle_y, dino_x, dino_y, dots_x, dots_y, h_lines_x, h_lines_y, high_lines_x, high_lines_y, slant_down_x, slant_down_y, slant_up_x, slant_up_y, star_x, star_y, v_lines_x, v_lines_y, wide_lines_x, wide_lines_y, x_shape_x, x_shape_y. 
 
 ### Exercise 2
 
